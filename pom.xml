@@ -7,9 +7,13 @@
     <packaging>jar</packaging>
     <name>xburger-webapp Maven Webapp</name>
     <url>http://maven.apache.org</url>
+
+    <!--Properties-->
     <properties>
         <tomcat.version>8.5.2</tomcat.version>
     </properties>
+
+    <!--Dependencies-->
     <dependencies>
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
@@ -42,9 +46,16 @@
             <version>${tomcat.version}</version>
         </dependency>
     </dependencies>
+
+    <!--Build Options-->
     <build>
         <finalName>embeddedTomcatSample</finalName>
         <plugins>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>1.2.1</version>
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>appassembler-maven-plugin</artifactId>
