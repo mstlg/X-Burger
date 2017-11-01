@@ -16,7 +16,7 @@ public class HelloServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ServletOutputStream out = resp.getOutputStream();
-        out.write("Under Construction".getBytes());
+        out.write("<h1>Under Construction</h1>".getBytes());
         out.flush();
         out.close();
     }
