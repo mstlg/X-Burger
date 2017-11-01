@@ -1,6 +1,6 @@
 <html>
     <body>
-        <h2>Hello Heroku!</h2>
+        <h2>Welcome to X Burger</h2>
         <a href="/hello">Press Me!</a>
     </body>
 </html>
