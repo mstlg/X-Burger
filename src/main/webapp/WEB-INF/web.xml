@@ -6,6 +6,19 @@
 
     <display-name>x-burger Web Application</display-name>
 
+    <!--****************************START OF PRODUCTION SERVLETS********************************-->
+    <servlet>
+        <servlet-name></servlet-name>
+        <servlet-class></servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name></servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
+
+    <!--****************************END OF PRODUCTION SERVLETS**********************************-->
+    <!--Test Servlet Setup for demonstration/teaching-->
     <servlet>
         <servlet-name>helloServlet</servlet-name>
         <servlet-class>
@@ -18,6 +31,7 @@
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
 
+    <!--Test JSP Setup for demonstration/teaching-->
     <servlet>
         <servlet-name>indexJSP</servlet-name>
         <jsp-file>/index.jsp</jsp-file>
