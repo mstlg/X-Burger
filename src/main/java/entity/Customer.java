@@ -1,5 +1,14 @@
 package entity;
 
+import com.google.gson.*;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 /**
  * Created by Julian on 5/11/2017.
  */
@@ -11,30 +20,69 @@ public class Customer {
     String phone_number;
     int iterations;
     String salt;
+    String passHash;
+    String passPin;
+    String cardToken;
+    static final String api_base_url = "http://project2-burgerx-database-api.herokuapp.com/customer/";
 
     // Constructor for Customer object with full suite of details as pulled from the database
-    public Customer(int customer_id, String username, String email, String phone_number, int iterations, String salt) {
+    public Customer(int customer_id, String username, String email, String phone_number, int iterations, String salt, String passHash, String passPin, String cardToken) {
         this.customer_id = customer_id;
         this.username = username;
         this.email = email;
         this.phone_number = phone_number;
         this.iterations = iterations;
         this.salt = salt;
+        this.passHash = passHash;
+        this.passPin = passPin;
+        this.cardToken = cardToken;
     }
 
     // Constructor for "prospective" customer with full suite of details (minus customer_id which will be assigned on registration
-    public Customer(String username, String email, String phone_number, int iterations, String salt) {
+    public Customer(String username, String email, String phone_number, int iterations, String salt, String passHash, String passPin, String cardToken) {
         this.username = username;
         this.email = email;
         this.phone_number = phone_number;
         this.iterations = iterations;
         this.salt = salt;
+        this.passHash = passHash;
+        this.passPin = passPin;
+        this.cardToken = cardToken;
     }
 
-    public static Customer getCustomerDetailsAPI (String username) {
+    public static Customer getCustomerDetailsByUsernameAPI (String username) {
+        String api_url = api_base_url + username;
+
+        try {
+            //Request the json resource at the specified url
+            URL url = new URL(api_url);
+            HttpURLConnection request = (HttpURLConnection) url.openConnection();
+            request.connect();
+
+            //Convert JSON object to access data
+            JsonParser jp = new JsonParser(); //json parser from gson library
+            JsonElement root = jp.parse(new InputStreamReader((InputStream)request.getContent()));
+            JsonObject customer_object = root.getAsJsonObject();
+
+            return new Customer(customer_object.get("Customer_ID").getAsInt(), customer_object.get("Username").getAsString(), customer_object.get("Email").getAsString(), customer_object.get("Phone_Number").getAsString(), customer_object.get("Iterations").getAsInt(), customer_object.get("Salt").getAsString(), customer_object.get("PassHash").getAsString(), customer_object.get("PassPin").getAsString(), customer_object.get("Card_Token").getAsString());
+
+        } catch (MalformedURLException e) {
+            //Not expected to be realised based on api_base_url setup
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 
-
+    public int validateCustomerPassword(String password) {
+        if(this.username.equals("void")) {
+            //Error code: 3 if username does not exist
+            return 3;
+        } else {
+            return 1;
+        }
+    }
 
 }
