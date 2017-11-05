@@ -1,6 +1,7 @@
 package servlet;
 
 import com.google.gson.*;
+import password.Passwords;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -38,6 +39,10 @@ public class HelloServlet extends HttpServlet {
         String jsonString = gson.toJson(rootobj);
 
         System.out.println(jsonString);
+
+        String string = "hello";
+        String hash = Passwords.base64Encode(Passwords.hash(string.toCharArray(), Passwords.getNextSalt(16), Passwords.getNextNumIterations()));
+        byte[] hashbytes = Passwords.base64Decode(hash);
 
         ServletOutputStream out = resp.getOutputStream();
         out.write("<h1>Under Construction</h1>".getBytes());
