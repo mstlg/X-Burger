@@ -21,6 +21,20 @@
 
     <!--****************************END OF PRODUCTION SERVLETS**********************************-->
 
+    <!--****************************START OF PRODUCTION JSP*************************************-->
+
+    <servlet>
+        <servlet-name>login_page</servlet-name>
+        <jsp-file>/login_page.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>login_page</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <!--****************************END OF PRODUCTION JSP***************************************-->
+
 
     <!--Test Servlet Setup for demonstration/teaching-->
     <servlet>

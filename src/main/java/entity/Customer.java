@@ -1,6 +1,7 @@
 package entity;
 
 import com.google.gson.*;
+import password.Passwords;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,8 +51,9 @@ public class Customer {
         this.cardToken = cardToken;
     }
 
-    public static Customer getCustomerDetailsByUsernameAPI (String username) {
-        String api_url = api_base_url + username;
+    // Get customer details by username from the API
+    public static Customer getCustomerDetailsAPI (String username, String method) {
+        String api_url = api_base_url + method + "/" + username;
 
         try {
             //Request the json resource at the specified url
@@ -76,13 +78,47 @@ public class Customer {
         return null;
     }
 
-    public int validateCustomerPassword(String password) {
-        if(this.username.equals("void")) {
-            //Error code: 3 if username does not exist
-            return 3;
-        } else {
-            return 1;
-        }
+    public boolean validateCustomerPassword(String password_entry, String hashDB, String saltDB, int iterationsDB) {
+
+        //Use Passwords class to compare password_entry with hash from the database
+        boolean password_validation = Passwords.isExpectedPassword(password_entry.toCharArray(), Passwords.base64Decode(saltDB), iterationsDB, Passwords.base64Decode(hashDB));
+
+        return password_validation;
     }
 
+    public int getCustomer_id() {
+        return customer_id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public int getIterations() {
+        return iterations;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public String getPassHash() {
+        return passHash;
+    }
+
+    public String getPassPin() {
+        return passPin;
+    }
+
+    public String getCardToken() {
+        return cardToken;
+    }
 }

@@ -12,5 +12,19 @@
 </head>
 <body>
 
+    <form action="/login_validation" method="post">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" placeholder="Username">
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="Email">
+
+        <label for="password"></label>
+        <input id="password" name="password" type="password" placeholder="Password">
+
+        <button type="submit">Login</button>
+
+    </form>
+
 </body>
 </html>
