@@ -52,8 +52,8 @@ public class Customer {
     }
 
     // Get customer details by username from the API
-    public static Customer getCustomerDetailsAPI (String username, String method) {
-        String api_url = api_base_url + method + "/" + username;
+    public static Customer getCustomerDetailsAPI (String username_entry, String method) {
+        String api_url = api_base_url + method + "/" + username_entry;
 
         try {
             //Request the json resource at the specified url
@@ -65,8 +65,21 @@ public class Customer {
             JsonParser jp = new JsonParser(); //json parser from gson library
             JsonElement root = jp.parse(new InputStreamReader((InputStream)request.getContent()));
             JsonObject customer_object = root.getAsJsonObject();
+            Gson gson = new GsonBuilder().serializeNulls().create();
 
-            return new Customer(customer_object.get("Customer_ID").getAsInt(), customer_object.get("Username").getAsString(), customer_object.get("Email").getAsString(), customer_object.get("Phone_Number").getAsString(), customer_object.get("Iterations").getAsInt(), customer_object.get("Salt").getAsString(), customer_object.get("PassHash").getAsString(), customer_object.get("PassPin").getAsString(), customer_object.get("Card_Token").getAsString());
+
+            //Extract customer data from JSON
+            int customer_id = customer_object.get("Customer_ID").getAsInt();
+            String username = customer_object.get("Username").getAsString();
+            String email = customer_object.get("Email").getAsString();
+            String phone_number =  customer_object.get("Phone_Number").getAsString();
+            int iterations = customer_object.get("Iterations").getAsInt();
+            String salt = customer_object.get("Salt").getAsString();
+            String passHash = customer_object.get("PassHash").getAsString();
+            String passPin = customer_object.get("PassPin").getAsString();
+            String cardToken = customer_object.get("Card_Token").getAsString();
+
+            return new Customer(customer_id, username, email, phone_number, iterations, salt, passHash, passPin, cardToken);
 
         } catch (MalformedURLException e) {
             //Not expected to be realised based on api_base_url setup
@@ -81,7 +94,10 @@ public class Customer {
     public boolean validateCustomerPassword(String password_entry, String hashDB, String saltDB, int iterationsDB) {
 
         //Use Passwords class to compare password_entry with hash from the database
-        boolean password_validation = Passwords.isExpectedPassword(password_entry.toCharArray(), Passwords.base64Decode(saltDB), iterationsDB, Passwords.base64Decode(hashDB));
+        byte[] salt_bytes = Passwords.base64Decode(saltDB);
+        byte[] hash_bytes = Passwords.base64Decode(hashDB);
+
+        boolean password_validation = Passwords.isExpectedPassword(password_entry.toCharArray(), salt_bytes, iterationsDB, hash_bytes);
 
         return password_validation;
     }

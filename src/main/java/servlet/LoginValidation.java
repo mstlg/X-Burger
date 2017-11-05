@@ -3,6 +3,7 @@ package servlet;
 import entity.Customer;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +24,7 @@ public class LoginValidation extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Customer customer_login_submission;
+        Customer customer_login_submission = null;
 
         //Get request parameters from form submission
         String username = request.getParameter("username");
@@ -37,7 +38,19 @@ public class LoginValidation extends HttpServlet {
             customer_login_submission = Customer.getCustomerDetailsAPI(email, "email");
         }
 
+        ServletOutputStream out = response.getOutputStream();
 
+        if (customer_login_submission != null) {
+            if (customer_login_submission.validateCustomerPassword(password, customer_login_submission.getPassHash(), customer_login_submission.getSalt(), customer_login_submission.getIterations())) {
+                out.write("<h1>Login Sucessful</h1>".getBytes());
+            } else {
+                out.write("<h1>Incorrect Password</h1>".getBytes());
+            }
+        }
+
+        out.write("<h1>Under Construction</h1>".getBytes());
+        out.flush();
+        out.close();
 
     }
 }
