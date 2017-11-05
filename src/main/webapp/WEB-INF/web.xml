@@ -7,22 +7,26 @@
     <display-name>x-burger Web Application</display-name>
 
     <!--****************************START OF PRODUCTION SERVLETS********************************-->
+
     <servlet>
-        <servlet-name></servlet-name>
-        <servlet-class></servlet-class>
+        <servlet-name>LoginValidation</servlet-name>
+        <servlet-class>servlet.LoginValidation</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name></servlet-name>
-        <url-pattern></url-pattern>
+        <servlet-name>LoginValidation</servlet-name>
+        <url-pattern>/login_validation</url-pattern>
     </servlet-mapping>
 
+
     <!--****************************END OF PRODUCTION SERVLETS**********************************-->
+
+
     <!--Test Servlet Setup for demonstration/teaching-->
     <servlet>
         <servlet-name>helloServlet</servlet-name>
         <servlet-class>
-            main.java.servlet.HelloServlet
+            servlet.HelloServlet
         </servlet-class>
     </servlet>
 

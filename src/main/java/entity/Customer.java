@@ -1,4 +1,4 @@
-package main.java.servlet;
+package entity;
 
 /**
  * Created by Julian on 5/11/2017.
@@ -29,6 +29,10 @@ public class Customer {
         this.phone_number = phone_number;
         this.iterations = iterations;
         this.salt = salt;
+    }
+
+    public static Customer getCustomerDetailsAPI (String username) {
+        return null;
     }
 
 
