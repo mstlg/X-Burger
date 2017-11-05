@@ -41,6 +41,7 @@ public class HelloServlet extends HttpServlet {
 
         ServletOutputStream out = resp.getOutputStream();
         out.write("<h1>Under Construction</h1>".getBytes());
+        out.write(jsonString.getBytes());
         out.flush();
         out.close();
     }
