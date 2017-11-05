@@ -1,0 +1,211 @@
+
+/*======================== GLOBAL =========================*/
+
+h1 {
+    font-size: 37px;
+    font-weight: 900;
+    width: 414px;
+    letter-spacing: 0.040em;
+    border: 1px solid rgba(47, 46, 47, 0.59);
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+h1, h2, p, span, a, btn-primary {
+    font-family: "museo-sans", helvetica, sans-serif;
+    color: #2f2e2f;
+    margin: 0;
+    padding: 0;
+}
+
+
+li {
+    color: white !important;
+    /* padding-left: 10px; */
+    word-spacing: 5px !important;
+}
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+p.desc-text {
+    font-size: 20px;
+    line-height: 35px;
+    text-align: justify;
+}
+
+
+/*======================== NAV =========================*/
+div#bs-example-navbar-collapse-1 {
+    height: 368px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none !important;
+}
+
+nav {
+    background: url('../images/stars.jpg') no-repeat center center;
+    font-size: 25px;
+}
+
+li{
+    color: white !important;
+    /*padding-left: 10px;*/
+    word-spacing: 5px !important;
+    display:inline-block;
+}
+.main-nav a {
+        font-size: 0.75000em;
+        font-weight: 700;
+        text-decoration: none;
+        color: #fff;
+        display: block;
+        text-align: center;
+        padding: 2px 0;
+       
+    }
+.main-nav a:hover {
+        color: #6c8f34;
+    }
+
+
+ nav {
+        position: fixed;
+        display: block;
+        position: fixed;
+        width: 100%;
+        height: 55px;
+        z-index: 100;
+        margin: 0;
+        padding: 0;
+        background-color: #1e1e1e;
+        text-align: center;
+    }
+
+
+/*======================== INTRO CONTAINER =========================*/
+.starter_container {
+    margin-top: -21px;
+    padding: 0;
+    min-width: 100%;
+    height: 100%;
+    /*background: url('../images/logo.jpg') no-repeat center center;*/
+
+    background-size: cover;
+    text-align: center;
+    background-position: center;  
+}
+
+.follow_container {
+    width: 100%;
+    position: absolute;
+    top: 35%;
+    text-align: center;
+}
+.starter_follow {
+    display: inline-block;
+    width: 80%;
+    z-index: 1;
+    margin: 0 auto;
+    padding: 0;
+}
+/*======================== ABOUT US CONTENT =========================*/
+.description_content {
+    padding: 50px 0;
+    width: 100%;
+    background: #fff;
+    margin: 0 auto 0 auto;
+    z-index: 99;
+    position: relative;
+    background: white;
+    text-align: center; 
+}
+.description_body {
+    margin: 45px auto;
+    max-width: 300px;
+}
+h1 {
+    font-size: 28px;
+    font-weight: 900;
+    width: 225px;
+    letter-spacing: 0.040em;
+    border: 8px solid #2f2e2f;
+    display: inline-block;
+    padding: 7px 16px;
+    margin: 0;
+}
+
+
+/*======================== FIRST FOOTER CONTENT =========================*/
+
+
+    section.social_connect {
+        
+        text-align: center;
+        margin-bottom: 50px;
+        background: url('../images/stars.jpg') no-repeat center center;
+  }
+
+    .social_heading {
+        font-size: 33px;
+        margin: 50px 0 0 0;
+    }
+
+.social_heading {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 0.040em;
+    color: #4286f4;
+    text-align: center;
+    margin: 40px 0 0 0;
+}
+
+
+/*Contact */
+
+.contact-text{
+    margin:45px auto;
+}
+
+/* Contact Form */
+
+
+.form{
+    width: 100%;
+    padding: 16.94px;
+    border: 1px solid rgba(13, 12, 12, 0.23);
+    margin-bottom:25px;
+    color:#727272 !important;
+    font-size:13px;
+}
+
+.textarea{
+    height: 200px;
+    max-height: 200px;
+    max-width: 100%;
+} 
+
+
+/*======================== FINAL FOOTER CONTENT =========================*/
+
+footer.sub_footer {
+    background-color: #1C1C1C;
+    padding: 20px;
+}
+
+p.sub-footer-text{
+    color: #6B6B6B;
+}
+
+p.sub-footer-text a{
+    color: #BDBDBD;
+    text-decoration: none;
+}
+
